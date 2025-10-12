@@ -17,7 +17,14 @@ namespace Personal_Budget_Tracker
 
         public string Date { get; set; }
 
-    }
+        public Transaction(string descritption, decimal amount, string category, string date)
+        {
+            Descritption = descritption;
+            Amount = amount;
+            Category = category;
+            Date = date;
+        }
+     }
 }
 
 
