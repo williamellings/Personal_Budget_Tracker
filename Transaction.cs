@@ -9,6 +9,13 @@ namespace Personal_Budget_Tracker
 {
     public class Transaction
     {
+        public string Descritption { get; set; }
+        
+        public decimal Amount { get; set; }
+
+        public string Category { get; set; }
+
+        public string Date { get; set; }
 
     }
 }
