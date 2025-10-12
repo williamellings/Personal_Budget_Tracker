@@ -24,6 +24,11 @@ namespace Personal_Budget_Tracker
             Category = category;
             Date = date;
         }
+
+        public void ShowInfo()
+        {
+            Console.WriteLine($" {Date} {Descritption} {Category}: {Amount} kr"); 
+        }
      }
 }
 
