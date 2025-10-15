@@ -1,31 +1,52 @@
-﻿using System;
+﻿using System; 
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Personal_Budget_Tracker
 {
     public class BudgetManager
     {
-        private List<Transaction> transaction = new List<Transaction>();
+        private List<Transaction> transactions = new List<Transaction>();
+        public decimal InTheBank { get; private set; } = 0;
 
-        public void AddTransaction(Transaction cash)
+      
+        public void AddTransaction()
         {
-            transaction.Add(cash);
+            Console.WriteLine("How much du you want to add?: (i kr)?");
+            string input = Console.ReadLine();
+
+            if (decimal.TryParse(input, out decimal amount))
+            {
+                Transaction trans = new Transaction
+                {
+                    Date = DateTime.Now,
+                    Description = "Transaction",
+                    Category = "Category",
+                    Amount = amount
+                };
+                transactions.Add(trans);
+                InTheBank += amount;
+                Console.WriteLine("Transaktionen har lagts till.");
+            }
+            else
+            {
+                Console.WriteLine("Wrong sum.");
+            }
         }
 
+        
         public void ShowAll()
         {
-            if (transaction.Count == 0)
+            if (transactions.Count == 0)
             {
-                Console.WriteLine("Inga transaktioner");
+                Console.WriteLine("No transactions");
                 return;
             }
-            for (int Inthebank=0; Inthebank < transaction.Count; Inthebank++)
-            {
 
+            foreach (Transaction t in transactions)
+            {
+                t.ShowInfo();
             }
+            Console.WriteLine($"In the bank: {InTheBank} kr");
         }
     }
 }
