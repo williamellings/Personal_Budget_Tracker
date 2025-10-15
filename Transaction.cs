@@ -11,11 +11,29 @@ namespace Personal_Budget_Tracker
         public string Category { get; set; }
         public decimal Amount { get; set; }
 
+
         
-        public void ShowInfo()
+
+        public Transaction()
         {
-            Console.WriteLine($"{Date.ToShortDateString()} {Description} {Category}: {Amount} kr");
         }
+
+        public Transaction(string description, string category, decimal amount, DateTime date)
+        {
+            this.Description = description;
+            this.Category = category;
+            this.Amount = amount;
+            this.Date = date;
+        }
+
+        public void ShowTransactionInfo()
+        {
+            // .ToString() med format för både datum och tid
+            Console.WriteLine($"{Date.ToString("yyyy-MM-dd HH:mm")} {Description} {Category}: {Amount} kr");
+        }
+
+
+
     }
 }
 
