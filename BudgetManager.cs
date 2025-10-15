@@ -15,6 +15,17 @@ namespace Personal_Budget_Tracker
             transaction.Add(cash);
         }
 
-        
+        public void ShowAll()
+        {
+            if (transaction.Count == 0)
+            {
+                Console.WriteLine("Inga transaktioner");
+                return;
+            }
+            for (int Inthebank=0; Inthebank < transaction.Count; Inthebank++)
+            {
+
+            }
+        }
     }
 }
