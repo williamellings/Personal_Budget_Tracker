@@ -6,7 +6,9 @@
         {
             bool start = true;
 
-            while(start)
+            BudgetManager budgetManager = new BudgetManager();
+
+            while (start)
             {
                 Console.WriteLine("\nMeny");
 
@@ -20,7 +22,9 @@
 
                 switch(val)
                 {
-
+                    case "1":
+                    budgetManager.AddTransaction();
+                        break;
                 }
 
 
