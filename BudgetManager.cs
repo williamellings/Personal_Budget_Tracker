@@ -53,7 +53,7 @@ namespace Personal_Budget_Tracker
         {
             if (transactions.Count == 0)
             {
-                Console.WriteLine("Inga transaktioner att ta bort.");
+                Console.WriteLine("No transaction to remove.");
                 return;
             }
 
