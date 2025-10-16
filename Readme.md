@@ -28,3 +28,4 @@ Använd menyerna för att lägga till, ta bort och visa transaktioner.
 Följ instruktionerna i konsolen för att navigera i systemet.
 
 <img width="696" height="785" alt="image" src="https://github.com/user-attachments/assets/bc8f9bc2-a3ab-4a09-8e07-becde7bcca85" />
+<img width="1040" height="541" alt="image" src="https://github.com/user-attachments/assets/cd14211a-3970-4b9c-84fa-3d332da4bce4" />
