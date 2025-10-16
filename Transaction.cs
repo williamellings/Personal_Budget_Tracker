@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿using System; // använder system
+using System.Collections.Generic; // använder listor
 
 namespace Personal_Budget_Tracker
 {
     public class Transaction
     {
-        public DateTime Date { get; set; }
-        public string Description { get; set; }
-        public string Category { get; set; }
-        public decimal Amount { get; set; }
-
-
-        
+        public DateTime Date { get; set; } // datum för transaktionen
+        public string Description { get; set; } // beskrivning av transaktionen
+        public string Category { get; set; } // kategori för transaktionen
+        public decimal Amount { get; set; } // belopp för transaktionen
 
         public Transaction()
         {
@@ -20,30 +16,16 @@ namespace Personal_Budget_Tracker
 
         public Transaction(string description, string category, decimal amount, DateTime date)
         {
-            Description = description;
-            Category = category;
-            Amount = amount;
-            Date = date;
+            Description = description; // sätter beskrivning
+            Category = category; // sätter kategori
+            Amount = amount; // sätter belopp
+            Date = date; // sätter datum
         }
 
         public void ShowTransactionInfo()
         {
-            // .ToString() med format för både datum och tid
+            // skriver ut info om transaktionen med datum och tid
             Console.WriteLine($"{Date.ToString("yyyy-MM-dd HH:mm")} {Description} {Category}: {Amount} kr");
         }
-
-
-
     }
 }
-
-
-
-/*-Description(t.ex. “Lön”, “Matinköp”)
-- Amount(decimal, positivt = inkomst, negativt = utgift)
-- Category(t.ex. “Mat”, “Transport”, “Hyra”, “Inkomst”)
-- Date(skrivs som text, t.ex. “2025 - 10 - 10”)
-💬 Metod:
-
--ShowInfo() – skriver ut all information om transaktionen. */
-

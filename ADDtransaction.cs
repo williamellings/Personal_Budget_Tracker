@@ -1,81 +1,72 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
+﻿using System; // använder system
+using System.Collections.Generic; // använder listor
+
 
 namespace Personal_Budget_Tracker
 {
     public class ADDtransaction
     {
 
-        public List<Transaction> transactions = new List<Transaction>();
-        public decimal InTheBank { get; private set; } = 0;
+        public List<Transaction> transactions = new List<Transaction>(); // lista med transaktioner
+        public decimal InTheBank { get; private set; } = 0; // pengar i banken
+
         public void AddTransaction()
         {
-            Console.WriteLine("Do you want to add spending or salary?");
-            Console.WriteLine("1. Salary: ");
-            Console.WriteLine("2. Spending: ");
-            string option = Console.ReadLine();
-
+            Console.WriteLine("Do you want to add spending or salary?"); // fråga vad man vill göra
+            Console.WriteLine("1. Salary: "); // lön
+            Console.WriteLine("2. Spending: "); // utgift
+            string option = Console.ReadLine(); // läser inval
 
             switch (option)
             {
-                case "1":
+                case "1": // om man väljer lön
 
-                    Console.WriteLine("How much do you want to add? (in kr): ");
+                    Console.WriteLine("How much do you want to add? (in kr): "); // fråga hur mycket
 
-                    string input = Console.ReadLine();
-                    if (decimal.TryParse(input, out decimal amount))
+                    string input = Console.ReadLine(); // läser in summan
+                    if (decimal.TryParse(input, out decimal amount)) // kollar om det är ett tal
                     {
 
+                        Console.WriteLine("Description?: "); // fråga om beskrivning
+                        string desc = Console.ReadLine(); // läser in beskrivning
 
-                        Console.WriteLine("Description?: ");
-                        string desc = Console.ReadLine();
+                        Console.WriteLine("category?: "); // fråga om kategori
+                        string cat = Console.ReadLine(); // läser in kategori
 
-                        Console.WriteLine("category?: ");
-                        string cat = Console.ReadLine();
+                        Transaction trans = new Transaction(desc, cat, amount, DateTime.Now); // skapar transaktion
 
-
-
-                        Transaction trans = new Transaction(desc, cat, amount, DateTime.Now);
-
-                        transactions.Add(trans);
-                        InTheBank += amount; //lägger till apengarna i banken
-                        Console.WriteLine("Transaction added.");
+                        transactions.Add(trans); // lägger till i listan
+                        InTheBank += amount; // lägger till pengar i banken
+                        Console.WriteLine("Transaction added."); // skriver ut att det är klart
                     }
                     else
                     {
-                        Console.WriteLine("Wrong sum.");
+                        Console.WriteLine("Wrong sum."); // fel om det inte är ett tal
                     }
                     break;
-                case "2":
+                case "2": // om man väljer utgift
 
-                    Console.WriteLine("Spendings? (in kr): ");
+                    Console.WriteLine("Spendings? (in kr): "); // fråga hur mycket man spenderat
 
-                    string spendinginput = Console.ReadLine();
-                    if (decimal.TryParse(spendinginput, out decimal spendingamount))
+                    string spendinginput = Console.ReadLine(); // läser in summan
+                    if (decimal.TryParse(spendinginput, out decimal spendingamount)) // kollar om det är ett tal
                     {
 
+                        Console.WriteLine("Description?: "); // fråga om beskrivning
+                        string desc = Console.ReadLine(); // läser in beskrivning
 
-                        Console.WriteLine("Description?: ");
-                        string desc = Console.ReadLine();
+                        Console.WriteLine("category?: "); // fråga om kategori
+                        string cat = Console.ReadLine(); // läser in kategori
 
-                        Console.WriteLine("category?: ");
-                        string cat = Console.ReadLine();
+                        Transaction trans = new Transaction(desc, cat, spendingamount, DateTime.Now); // skapar transaktion
 
-
-
-                        Transaction trans = new Transaction(desc, cat, spendingamount, DateTime.Now);
-
-                        transactions.Add(trans);
-                        InTheBank -= spendingamount; //tar bort pengar från banken
-                        Console.WriteLine("Transaction added.");
+                        transactions.Add(trans); // lägger till i listan
+                        InTheBank -= spendingamount; // tar bort pengar från banken
+                        Console.WriteLine("Transaction added."); // skriver ut att det är klart
                     }
                     else
                     {
-                        Console.WriteLine("Wrong sum.");
+                        Console.WriteLine("Wrong sum."); // fel om det inte är ett tal
                     }
                     break;
             }
