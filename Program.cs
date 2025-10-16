@@ -7,6 +7,7 @@
             bool start = true;
 
             BudgetManager budgetManager = new BudgetManager();
+            ADDtransaction aDDtransaction = new ADDtransaction();
 
             while (start)
             {
@@ -23,7 +24,7 @@
                 switch(val)
                 {
                     case "1":
-                        budgetManager.AddTransaction();
+                        aDDtransaction.AddTransaction();
                         break;
 
                     case "2":

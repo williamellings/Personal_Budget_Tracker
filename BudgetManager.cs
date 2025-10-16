@@ -10,38 +10,6 @@ namespace Personal_Budget_Tracker
         public List<Transaction> transactions = new List<Transaction>();
         public decimal InTheBank { get; private set; } = 0;
 
-
-        public void AddTransaction()
-        {
-            Console.WriteLine("How much do you want to add?: (i kr)?");
-            string input = Console.ReadLine();
-
-            if (decimal.TryParse(input, out decimal amount))
-            {
-                // Fråga efter beskrivning och kategori från användaren
-                Console.WriteLine("Salary?");
-                string desc = Console.ReadLine();
-                
-                
-                Console.WriteLine("category?");
-
-                string cat = Console.ReadLine();       
-
-                
-
-                Transaction trans = new Transaction(desc, cat, amount, DateTime.Now);
-
-                transactions.Add(trans);
-                InTheBank += amount;
-                Console.WriteLine("Transaktionen har lagts till.");
-            }
-            else
-            {
-                Console.WriteLine("Wrong sum.");
-            }
-        }
-
-    
         public void CalulateBalance()
         {
             
