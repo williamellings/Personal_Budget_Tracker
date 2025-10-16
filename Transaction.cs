@@ -30,6 +30,7 @@ namespace Personal_Budget_Tracker
                 Console.ForegroundColor = ConsoleColor.Red;   // expense
 
             Console.WriteLine($"{Date:yyyy-MM-dd HH:mm} {Description} {Category}: {Amount} kr");
+            Console.ResetColor();
         }
     }
 }
