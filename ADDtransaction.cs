@@ -22,6 +22,7 @@ namespace Personal_Budget_Tracker
             switch (option)
             {
                 case "1": // om man väljer lön
+                    Console.ForegroundColor = ConsoleColor.Green; // Färgen blir röd
                     Console.WriteLine("How much do you want to add? (in kr): "); // fråga hur mycket
                     string input = Console.ReadLine(); // läser in summan
                     if (decimal.TryParse(input, out decimal amount)) // kollar om det är ett tal
@@ -42,9 +43,13 @@ namespace Personal_Budget_Tracker
                     {
                         Console.WriteLine("Wrong sum."); // fel om det inte är ett tal
                     }
+                    Console.ResetColor(); //färgen återställs
                     break;
                 case "2": // om man väljer utgift
+                        Console.ForegroundColor = ConsoleColor.Red; // Färgen blir röd 
+
                     Console.WriteLine("Spendings? (in kr): "); // fråga hur mycket man spenderat
+
                     string spendinginput = Console.ReadLine(); // läser in summan
                     if (decimal.TryParse(spendinginput, out decimal spendingamount)) // kollar om det är ett tal
                     {
@@ -64,6 +69,7 @@ namespace Personal_Budget_Tracker
                     {
                         Console.WriteLine("Wrong sum."); // fel om det inte är ett tal
                     }
+                    Console.ResetColor(); //färgen återställs
                     break;
             }
         }
