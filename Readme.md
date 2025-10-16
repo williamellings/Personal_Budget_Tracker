@@ -26,3 +26,5 @@ F5 (Starta) eller tryck på den gröna knappen.
 
 Använd menyerna för att lägga till, ta bort och visa transaktioner.
 Följ instruktionerna i konsolen för att navigera i systemet.
+
+<img width="696" height="785" alt="image" src="https://github.com/user-attachments/assets/bc8f9bc2-a3ab-4a09-8e07-becde7bcca85" />
