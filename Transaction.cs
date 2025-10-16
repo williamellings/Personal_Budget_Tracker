@@ -20,10 +20,10 @@ namespace Personal_Budget_Tracker
 
         public Transaction(string description, string category, decimal amount, DateTime date)
         {
-            this.Description = description;
-            this.Category = category;
-            this.Amount = amount;
-            this.Date = date;
+            Description = description;
+            Category = category;
+            Amount = amount;
+            Date = date;
         }
 
         public void ShowTransactionInfo()

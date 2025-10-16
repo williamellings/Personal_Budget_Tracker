@@ -31,7 +31,6 @@
                         break;
                    
                     case "3":
-                        Console.WriteLine("Total balance: " + budgetManager.InTheBank);
                         Console.WriteLine("All transactions info:");
                         foreach (var t in budgetManager.transactions)
                         {

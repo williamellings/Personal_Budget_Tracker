@@ -21,7 +21,9 @@ namespace Personal_Budget_Tracker
                 // Fråga efter beskrivning och kategori från användaren
                 Console.WriteLine("Salary?");
                 string desc = Console.ReadLine();
-                Console.WriteLine("Salary?");
+                
+                
+                Console.WriteLine("category?");
 
                 string cat = Console.ReadLine();       
 
