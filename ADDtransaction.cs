@@ -1,14 +1,16 @@
 ﻿using System; // använder system
 using System.Collections.Generic; // använder listor
 
-
 namespace Personal_Budget_Tracker
 {
     public class ADDtransaction
     {
+        private BudgetData _data; // gemensam data för transaktioner och saldo
 
-        public List<Transaction> transactions = new List<Transaction>(); // lista med transaktioner
-        public decimal InTheBank { get; private set; } = 0; // pengar i banken
+        public ADDtransaction(BudgetData data)
+        {
+            _data = data; // sätter data-objektet
+        }
 
         public void AddTransaction()
         {
@@ -20,13 +22,10 @@ namespace Personal_Budget_Tracker
             switch (option)
             {
                 case "1": // om man väljer lön
-
                     Console.WriteLine("How much do you want to add? (in kr): "); // fråga hur mycket
-
                     string input = Console.ReadLine(); // läser in summan
                     if (decimal.TryParse(input, out decimal amount)) // kollar om det är ett tal
                     {
-
                         Console.WriteLine("Description?: "); // fråga om beskrivning
                         string desc = Console.ReadLine(); // läser in beskrivning
 
@@ -35,8 +34,8 @@ namespace Personal_Budget_Tracker
 
                         Transaction trans = new Transaction(desc, cat, amount, DateTime.Now); // skapar transaktion
 
-                        transactions.Add(trans); // lägger till i listan
-                        InTheBank += amount; // lägger till pengar i banken
+                        _data.Transactions.Add(trans); // lägger till i listan
+                        _data.InTheBank += amount; // lägger till pengar i banken
                         Console.WriteLine("Transaction added."); // skriver ut att det är klart
                     }
                     else
@@ -45,13 +44,10 @@ namespace Personal_Budget_Tracker
                     }
                     break;
                 case "2": // om man väljer utgift
-
                     Console.WriteLine("Spendings? (in kr): "); // fråga hur mycket man spenderat
-
                     string spendinginput = Console.ReadLine(); // läser in summan
                     if (decimal.TryParse(spendinginput, out decimal spendingamount)) // kollar om det är ett tal
                     {
-
                         Console.WriteLine("Description?: "); // fråga om beskrivning
                         string desc = Console.ReadLine(); // läser in beskrivning
 
@@ -60,8 +56,8 @@ namespace Personal_Budget_Tracker
 
                         Transaction trans = new Transaction(desc, cat, spendingamount, DateTime.Now); // skapar transaktion
 
-                        transactions.Add(trans); // lägger till i listan
-                        InTheBank -= spendingamount; // tar bort pengar från banken
+                        _data.Transactions.Add(trans); // lägger till i listan
+                        _data.InTheBank -= spendingamount; // tar bort pengar från banken
                         Console.WriteLine("Transaction added."); // skriver ut att det är klart
                     }
                     else
@@ -71,6 +67,5 @@ namespace Personal_Budget_Tracker
                     break;
             }
         }
-
     }
 }

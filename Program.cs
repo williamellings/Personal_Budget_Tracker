@@ -4,11 +4,12 @@
     {
         static void Main(string[] args)
         {
-            bool start = true; // variabel för att hålla igång loopen
+            bool start = true;
+            BudgetData data = new BudgetData(); // gemensam datamodell
 
-            BudgetManager budgetManager = new BudgetManager(); // skapar ett budget-objekt
-            ADDtransaction aDDtransaction = new ADDtransaction(); // skapar ett transaktions-objekt
-
+            BudgetManager budgetManager = new BudgetManager(data); // ger datan till budgetManager
+            ADDtransaction aDDtransaction = new ADDtransaction(data); // ger datan till ADDtransaction
+            Budgetconverter budgetconverter = new Budgetconverter(data); // ger datan till Budgetconverter
             while (start) // så länge start är true körs loopen
             {
                 Console.WriteLine("\nMeny"); // skriver ut meny
@@ -28,12 +29,12 @@
                         break;
 
                     case "2":
-                        budgetManager.CalulateBalance(); // visar saldo
+                        budgetconverter.CalulateBalance(); // visar saldo
                         break;
 
                     case "3":
-                        Console.WriteLine("All transactions info:"); // skriver ut alla transaktioner
-                        foreach (var t in budgetManager.transactions)
+                        Console.WriteLine("All transactions info:");
+                        foreach (var t in data.Transactions) // använd det gemensamma BudgetData-objektet
                         {
                             t.ShowTransactionInfo(); // visar info om varje transaktion
                         }
