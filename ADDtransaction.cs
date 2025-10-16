@@ -58,10 +58,9 @@ namespace Personal_Budget_Tracker
 
                         Console.WriteLine("category?: "); // fråga om kategori
                         string cat = Console.ReadLine(); // läser in kategori
-
-                        Transaction trans = new Transaction(desc, cat, spendingamount, DateTime.Now); // skapar transaktion
-
-                        _data.Transactions.Add(trans); // lägger till i listan
+                        
+                        Transaction trans = new Transaction(desc, cat, -spendingamount, DateTime.Now); // utgift som negativt tal
+                        _data.Transactions.Add(trans);
                         _data.InTheBank -= spendingamount; // tar bort pengar från banken
                         Console.WriteLine("Transaction added."); // skriver ut att det är klart
                     }
