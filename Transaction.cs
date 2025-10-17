@@ -12,8 +12,14 @@ namespace Personal_Budget_Tracker
 
         public virtual void ShowTransactionInfo()
         {
+
+            if (Amount >= 0)
+                Console.ForegroundColor = ConsoleColor.Green;  // Grön för inkomster
+            else
+                Console.ForegroundColor = ConsoleColor.Red;
             // skriver ut info om transaktionen med datum och tid
             Console.WriteLine($"{Date.ToString("yyyy-MM-dd HH:mm")} Description: {Description} Category: {Category}: How much: {Amount} kr");
+            Console.ResetColor();
         }
     }
 }
