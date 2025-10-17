@@ -10,10 +10,10 @@ namespace Personal_Budget_Tracker
         public string Category { get; set; } = category; // sätter kategori
         public decimal Amount { get; set; } = amount; // sätter belopp
 
-        public void ShowTransactionInfo()
+        public virtual void ShowTransactionInfo()
         {
             // skriver ut info om transaktionen med datum och tid
-            Console.WriteLine($"{Date.ToString("yyyy-MM-dd HH:mm")} {Description} {Category}: {Amount} kr");
+            Console.WriteLine($"{Date.ToString("yyyy-MM-dd HH:mm")} Description: {Description} Category: {Category}: How much: {Amount} kr");
         }
     }
 }

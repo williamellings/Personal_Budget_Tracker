@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Transactions;
 
+
 namespace Personal_Budget_Tracker 
 {
     public class BudgetManager
@@ -62,6 +63,12 @@ namespace Personal_Budget_Tracker
         public void CalculateBalance()
         {
             Console.WriteLine($"In the bank: {InTheBank} kr");
+        }
+
+
+        public void ShowTransactionInfo()
+        {
+            
         }
 
         public void RemoveTransaction()

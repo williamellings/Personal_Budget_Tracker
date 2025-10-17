@@ -32,12 +32,12 @@ namespace Personal_Budget_Tracker
                         break;
 
                     case "2":
-                        budgetManager.CalulateBalance(); // visar saldo
+                        budgetManager.CalculateBalance(); // visar saldo
                         break;
 
                     case "3":
                         Console.WriteLine("All transactions info:");
-                        foreach (var t in Transactions) // använd det gemensamma BudgetData-objektet
+                        foreach (var t in budgetManager.Transactions) // använd det gemensamma BudgetData-objektet
                         {
                             t.ShowTransactionInfo(); // visar info om varje transaktion
                         }
