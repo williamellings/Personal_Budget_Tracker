@@ -22,29 +22,23 @@ namespace Personal_Budget_Tracker
 
             if (option == "1")
             {
-                Console.Write("How much do you want to add? (in kr): ");
-                if (!decimal.TryParse(Console.ReadLine(), out amount))
-                {
-                    Console.WriteLine("Invalid sum.");
-                    return;
-                }
+                // Validerad beloppsinmatning
+                amount = GetValidAmount("How much do you want to add? (in kr): ");
+
                 Console.Write("Description?: ");
                 desc = Console.ReadLine();
                 Console.Write("Category?: ");
                 cat = Console.ReadLine();
 
-                Transactions.Add(new Transaction(desc, cat, amount, DateTime.Now)); // FIX: lägger till transaktionen
+                Transactions.Add(new Transaction(desc, cat, amount, DateTime.Now));
                 InTheBank += amount;
                 Console.WriteLine("Salary transaction added.");
             }
             else if (option == "2")
             {
-                Console.Write("How much did you spend? (in kr): ");
-                if (!decimal.TryParse(Console.ReadLine(), out amount))
-                {
-                    Console.WriteLine("Invalid sum.");
-                    return;
-                }
+                // Validerad beloppsinmatning
+                amount = GetValidAmount("How much did you spend? (in kr): ");
+
                 Console.Write("Description?: ");
                 desc = Console.ReadLine();
                 Console.Write("Category?: ");
@@ -59,6 +53,21 @@ namespace Personal_Budget_Tracker
                 Console.WriteLine("Invalid option.");
             }
         }
+
+        // Lägg denna metod i din klass BudgetManager!
+        public decimal GetValidAmount(string prompt)
+        {
+            decimal amount;
+            while (true)
+            {
+                Console.Write(prompt);
+                string input = Console.ReadLine();
+                if (decimal.TryParse(input, out amount))
+                    return amount;
+                Console.WriteLine("Fel: Skriv in ett numeriskt värde för beloppet.");
+            }
+        }
+
 
         public void CalculateBalance()
         {
@@ -98,6 +107,7 @@ namespace Personal_Budget_Tracker
                 Console.WriteLine("Wrong index.");
             }
         }
+
     }
 }
 
