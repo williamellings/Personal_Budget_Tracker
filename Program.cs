@@ -1,15 +1,18 @@
-﻿namespace Personal_Budget_Tracker
+﻿using System;
+using System.Collections.Generic;
+
+namespace Personal_Budget_Tracker
 {
     public class Program
     {
         static void Main(string[] args)
         {
             bool start = true;
-            BudgetData data = new BudgetData(); // gemensam datamodell
 
-            BudgetManager budgetManager = new BudgetManager(data); // ger datan till budgetManager
-            ADDtransaction aDDtransaction = new ADDtransaction(data); // ger datan till ADDtransaction
-            Budgetconverter budgetconverter = new Budgetconverter(data); // ger datan till Budgetconverter
+
+            BudgetManager budgetManager = new BudgetManager(); 
+            
+            
             while (start) // så länge start är true körs loopen
             {
                 Console.WriteLine("\nMeny"); // skriver ut meny
@@ -25,16 +28,16 @@
                 switch (val) // kollar vilket val användaren gjorde
                 {
                     case "1":
-                        aDDtransaction.AddTransaction(); // lägger till transaktion
+                        budgetManager.AddTransaction(); // lägger till transaktion
                         break;
 
                     case "2":
-                        budgetconverter.CalulateBalance(); // visar saldo
+                        budgetManager.CalulateBalance(); // visar saldo
                         break;
 
                     case "3":
                         Console.WriteLine("All transactions info:");
-                        foreach (var t in data.Transactions) // använd det gemensamma BudgetData-objektet
+                        foreach (var t in Transactions) // använd det gemensamma BudgetData-objektet
                         {
                             t.ShowTransactionInfo(); // visar info om varje transaktion
                         }

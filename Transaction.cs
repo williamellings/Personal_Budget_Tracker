@@ -3,24 +3,12 @@ using System.Collections.Generic; // använder listor
 
 namespace Personal_Budget_Tracker
 {
-    public class Transaction
+    public class Transaction(string description, string category, decimal amount, DateTime date)
     {
-        public DateTime Date { get; set; } // datum för transaktionen
-        public string Description { get; set; } // beskrivning av transaktionen
-        public string Category { get; set; } // kategori för transaktionen
-        public decimal Amount { get; set; } // belopp för transaktionen
-
-        public Transaction()
-        {
-        }
-
-        public Transaction(string description, string category, decimal amount, DateTime date)
-        {
-            Description = description; // sätter beskrivning
-            Category = category; // sätter kategori
-            Amount = amount; // sätter belopp
-            Date = date; // sätter datum
-        }
+        public DateTime Date { get; set; } = date; // sätter datum
+        public string Description { get; set; } = description; // sätter beskrivning
+        public string Category { get; set; } = category; // sätter kategori
+        public decimal Amount { get; set; } = amount; // sätter belopp
 
         public void ShowTransactionInfo()
         {

@@ -1,44 +1,96 @@
-﻿using System; // använder system
-using System.Collections.Generic; // använder listor
+﻿using System;
+using System.Collections.Generic;
+using System.Transactions;
 
-namespace Personal_Budget_Tracker
+namespace Personal_Budget_Tracker 
 {
     public class BudgetManager
     {
-        private BudgetData _data; // gemensam data för transaktioner och saldo
+        public List<Transaction> Transactions { get; private set; } = new List<Transaction>();
+        public decimal InTheBank { get; private set; } = 0;
 
-        public BudgetManager(BudgetData data)
+        public void AddTransaction()
         {
-            _data = data; // sätter data-objektet
+            Console.WriteLine("Do you want to add salary or spending?");
+            Console.WriteLine("1. Salary");
+            Console.WriteLine("2. Spending");
+            string option = Console.ReadLine();
+
+            decimal amount;
+            string desc, cat;
+
+            if (option == "1")
+            {
+                Console.Write("How much do you want to add? (in kr): ");
+                if (!decimal.TryParse(Console.ReadLine(), out amount))
+                {
+                    Console.WriteLine("Invalid sum.");
+                    return;
+                }
+                Console.Write("Description?: ");
+                desc = Console.ReadLine();
+                Console.Write("Category?: ");
+                cat = Console.ReadLine();
+
+                Transactions.Add(new Transaction(desc, cat, amount, DateTime.Now)); // FIX: lägger till transaktionen
+                InTheBank += amount;
+                Console.WriteLine("Salary transaction added.");
+            }
+            else if (option == "2")
+            {
+                Console.Write("How much did you spend? (in kr): ");
+                if (!decimal.TryParse(Console.ReadLine(), out amount))
+                {
+                    Console.WriteLine("Invalid sum.");
+                    return;
+                }
+                Console.Write("Description?: ");
+                desc = Console.ReadLine();
+                Console.Write("Category?: ");
+                cat = Console.ReadLine();
+
+                Transactions.Add(new Transaction(desc, cat, -amount, DateTime.Now));
+                InTheBank -= amount;
+                Console.WriteLine("Spending transaction added.");
+            }
+            else
+            {
+                Console.WriteLine("Invalid option.");
+            }
+        }
+
+        public void CalculateBalance()
+        {
+            Console.WriteLine($"In the bank: {InTheBank} kr");
         }
 
         public void RemoveTransaction()
         {
-            if (_data.Transactions.Count == 0) // kollar om det finns några transaktioner
+            if (Transactions.Count == 0)
             {
-                Console.WriteLine("No transaction to remove."); // skriver ut om det inte finns någon
-                return; // avslutar metoden
+                Console.WriteLine("No transaction to remove.");
+                return;
             }
 
-            for (int i = 0; i < _data.Transactions.Count; i++) // loopar igenom alla transaktioner
+            Console.WriteLine("Transactions:");
+            for (int i = 0; i < Transactions.Count; i++)
             {
-                Console.Write($"{i}: "); // skriver ut index
-                _data.Transactions[i].ShowTransactionInfo(); // visar info om transaktionen
+                Console.Write($"{i}: ");
+                Transactions[i].ShowTransactionInfo();
             }
 
-            Console.WriteLine("What trans do you want to remove? Choice index: "); // fråga vilken som ska tas bort
-            string input = Console.ReadLine(); // läser in index
-
-            if (int.TryParse(input, out int index) && index >= 0 && index < _data.Transactions.Count) // kollar om index är giltigt
+            Console.Write("Which transaction do you want to remove? Enter index: ");
+            if (int.TryParse(Console.ReadLine(), out int index) && index >= 0 && index < Transactions.Count)
             {
-                _data.InTheBank -= _data.Transactions[index].Amount; // tar bort summan från banken
-                _data.Transactions.RemoveAt(index); // tar bort transaktionen från listan
-                Console.WriteLine("Transaction removed."); // skriver ut att den är borttagen
+                InTheBank -= Transactions[index].Amount;
+                Transactions.RemoveAt(index);
+                Console.WriteLine("Transaction removed.");
             }
             else
             {
-                Console.WriteLine("Wrong index."); // felmeddelande om index är fel
+                Console.WriteLine("Wrong index.");
             }
         }
     }
 }
+
