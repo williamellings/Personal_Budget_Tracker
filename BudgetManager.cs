@@ -98,6 +98,38 @@ namespace Personal_Budget_Tracker
                 Console.WriteLine("Wrong index.");
             }
         }
+        public List<Transaction> FilterByCategory(string category)
+        {
+            var result = new List<Transaction>();
+            foreach (var t in Transactions)
+            {
+                if (t.Category.Equals(category, StringComparison.OrdinalIgnoreCase))
+                    result.Add(t);
+            }
+            return result;
+        }
+
+        // Summera alla inkomster
+        public decimal TotalIncome()
+        {
+            decimal sum = 0;
+            foreach (var t in Transactions)
+            {
+                if (t.Amount > 0) sum += t.Amount;
+            }
+            return sum;
+        }
+
+        // Summera alla utgifter
+        public decimal TotalSpending()
+        {
+            decimal sum = 0;
+            foreach (var t in Transactions)
+            {
+                if (t.Amount < 0) sum += t.Amount;
+            }
+            return sum;
+        }
     }
 }
 
